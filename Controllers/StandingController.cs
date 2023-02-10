@@ -40,7 +40,7 @@ namespace ResultadosBackend.Controllers
         }
 
 
-        [HttpGet("Argentina")]
+        [HttpGet("leagues/Argentina")]
         public async Task<IActionResult> GetStandingsArgentina()
         {
             var client = new HttpClient();
@@ -63,7 +63,7 @@ namespace ResultadosBackend.Controllers
 
         }
 
-        [HttpGet("{LeagueId}")]
+        [HttpGet("leagues/{LeagueId}")]
         //Argentina 128
         public async Task<IActionResult> GetStandingsArgentinaByIDandYear(int LeagueId,int Season)
         {

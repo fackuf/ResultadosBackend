@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Options;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using ResultadosBackend.Models;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics.Metrics;
 
 namespace ResultadosBackend.Controllers
@@ -21,6 +24,7 @@ namespace ResultadosBackend.Controllers
         }
 
         [HttpGet]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Administrador")]
         public async Task<IActionResult> GetLiveMatches()
         {
             var client = new HttpClient();
@@ -41,6 +45,7 @@ namespace ResultadosBackend.Controllers
         }
 
         [HttpGet("live")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "User")]
         public async Task<IActionResult> GetLiveScores()
         {
             var client = new HttpClient();
